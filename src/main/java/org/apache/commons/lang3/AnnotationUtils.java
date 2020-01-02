@@ -120,12 +120,16 @@ public class AnnotationUtils {
      * {@code null}
      */
     public static boolean equals(final Annotation a1, final Annotation a2) {
-        if (a1 == a2) {
-            return true;
-        }
+    	if (a1 == a2) {
+    		return true;
+    	}
         if (a1 == null || a2 == null) {
             return false;
         }
+        if (a1.equals(a2)) {
+        	return true;
+        }
+        
         final Class<? extends Annotation> type = a1.annotationType();
         final Class<? extends Annotation> type2 = a2.annotationType();
         Validate.notNull(type, "Annotation %s with null annotationType()", a1);
@@ -261,7 +265,7 @@ public class AnnotationUtils {
      * @return a flag whether these objects are equal
      */
     private static boolean memberEquals(final Class<?> type, final Object o1, final Object o2) {
-        if (o1 == o2) {
+        if (o1.equals(o2)) {
             return true;
         }
         if (o1 == null || o2 == null) {
